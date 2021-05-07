@@ -1,0 +1,11 @@
+- hosts: master
+  vars:
+      ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+
+    - community.kubernetes.helm:
+        name: "{{name}}"
+        chart_ref: "{{ref}}"
+        repo_url: "{{location}}"
+      
