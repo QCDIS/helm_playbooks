@@ -26,10 +26,10 @@
         var: ansible_galaxy_output
         
            
-#     - community.general.snap:
-#         name:
-#           - helm
-#       register: snap_out
+    - snap:
+        name:
+          - helm
+      register: snap_out
       
-#     - debug:
-#         var: snap_out
+    - debug:
+        var: snap_out
