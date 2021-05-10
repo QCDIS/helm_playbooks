@@ -18,34 +18,34 @@
     become: yes    
     
 
-    - pip:
-        name: pip
-        state: latest
+  - pip:
+      name: pip
+      state: latest
 
 #     - pip:
 #         name:
 #           - ansible[azure]
 #         state: forcereinstall
 
-    - shell: ansible --version
-      register: ansible_v_output
+  - shell: ansible --version
+    register: ansible_v_output
       
       
-    - debug:
-        var: ansible_v_output
+  - debug:
+      var: ansible_v_output
       
       
-    - shell: ansible-galaxy collection install community.general
-      register: ansible_galaxy_output
+  - shell: ansible-galaxy collection install community.general
+    register: ansible_galaxy_output
       
-    - debug:
-        var: ansible_galaxy_output
+  - debug:
+      var: ansible_galaxy_output
         
            
-    - snap:
-        name:
-          - helm
-      register: snap_out
+  - snap:
+      name:
+        - helm
+    register: snap_out
       
-    - debug:
-        var: snap_out
+  - debug:
+      var: snap_out
