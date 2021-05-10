@@ -20,3 +20,7 @@
 
 
     - shell: ansible-galaxy collection install community.general
+      register: ansible_galaxy_output
+      
+    - debug:
+        var: ansible_galaxy_output
