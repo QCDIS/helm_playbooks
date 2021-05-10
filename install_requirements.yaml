@@ -25,13 +25,11 @@
     - debug:
         var: ansible_galaxy_output
         
-        
-    # Install "foo" and "bar" snap
-    
-    - community.general.snap:
-        name:
-          - helm
-      register: snap_out
+           
+#     - community.general.snap:
+#         name:
+#           - helm
+#       register: snap_out
       
-    - debug:
-        var: snap_out
+#     - debug:
+#         var: snap_out
