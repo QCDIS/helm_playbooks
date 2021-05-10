@@ -6,7 +6,7 @@
     - package:
         name:
         - jq
-        - ansible
+        - ansible=2.9
         state: present
       become: yes
 
