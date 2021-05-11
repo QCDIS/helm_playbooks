@@ -14,11 +14,12 @@
         name: pip
         state: latest
 
-    - pip:
-        name: ansible
-        version: '2.9'
-        state: forcereinstall
-
+    - shell: python3 -m pip install --user ansible && python3 -m pip install --user paramiko
+      register: ansibleinstall_output
+      
+    - debug:
+        var: ansibleinstall_output
+      
     - shell: ansible --version
       register: ansible_v_output
 
