@@ -4,7 +4,8 @@
 
   tasks:
 
-    - community.kubernetes.helm:
+#     - community.kubernetes.helm:
+      - helm:
         name: "{{name}}"
         chart_ref: "{{ref}}"
         repo_url: "{{location}}"
