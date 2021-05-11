@@ -1,19 +1,13 @@
 - hosts: master
-#   vars:
-#       ansible_python_interpreter: /usr/bin/python3
+   vars:
+       ansible_python_interpreter: /usr/bin/python3
 
   tasks:
   
-
-  - apt_key:
-      keyserver: keyserver.ubuntu.com
-      id: 93C4A3FD7BB9C367
-    
     
   - apt:
       pkg:
       - jq
-      - ansible
       update_cache: yes
     become: yes    
     
@@ -22,13 +16,11 @@
       name: pip
       state: latest
 
-#     - pip:
-#         name:
-#           - ansible[azure]
-#         state: forcereinstall
+    - pip:
+        name:
+          - ansible
+        state: forcereinstall
 
-  - shell: ansible --version
-    register: ansible_v_output
       
       
   - debug:
@@ -42,10 +34,10 @@
       var: ansible_galaxy_output
         
            
-  - snap:
-      name:
-        - helm
-    register: snap_out
+#   - snap:
+#       name:
+#         - helm
+#     register: snap_out
       
-  - debug:
-      var: snap_out
+#   - debug:
+#       var: snap_out
