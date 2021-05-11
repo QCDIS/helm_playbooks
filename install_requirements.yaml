@@ -3,29 +3,15 @@
    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
-    - shell: apt purge -y ansible*
-      become: yes 
-
     - package:
       name:
         - jq
       state: present
       become: yes 
-     
-    - package:
-      name:
-        - ansible
-      state: absent
-      become: yes 
-
 
     - pip:
       name: pip
       state: latest
-
-    - pip:
-      name: ansible
-      state: absent
 
     - pip:
       name: ansible
