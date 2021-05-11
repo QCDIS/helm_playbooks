@@ -18,9 +18,12 @@
       name: ansible
       state: absent
       
+    - shell: apt purge ansible*
+      become: yes
+      
    - pip:
       name: ansible
-      version: 2.9
+      version: '2.9'
       state: forcereinstall
         
    - shell: ansible --version
