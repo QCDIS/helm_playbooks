@@ -15,13 +15,12 @@
       state: latest
 
    - pip:
-      name:
-        - ansible
+      name: ansible
       state: absent
       
    - pip:
-      name:
-        - ansible
+      name: ansible
+      version: 2.9
       state: forcereinstall
         
    - shell: ansible --version
