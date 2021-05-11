@@ -18,8 +18,8 @@
       name: ansible
       state: absent
       
-    - shell: apt purge ansible*
-      become: yes
+   - shell: apt purge ansible*
+     become: yes
       
    - pip:
       name: ansible
