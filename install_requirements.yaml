@@ -38,7 +38,7 @@
     - debug:
         var: ansible_v_output
 
-    - shell: ansible-galaxy collection install community.general
+    - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general
       register: ansible_galaxy_output
 
     - debug:
