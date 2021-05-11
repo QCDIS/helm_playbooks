@@ -23,13 +23,13 @@
       register: ansible_v_output
 
     - debug:
-      var: ansible_v_output
+        var: ansible_v_output
 
     - shell: ansible-galaxy collection install community.general
       register: ansible_galaxy_output
 
     - debug:
-      var: ansible_galaxy_output
+        var: ansible_galaxy_output
         
            
 #   - snap:
