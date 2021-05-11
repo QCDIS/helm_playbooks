@@ -43,12 +43,4 @@
 
     - debug:
         var: ansible_galaxy_output
-        
-           
-#   - snap:
-#       name:
-#         - helm
-#     register: snap_out
       
-#   - debug:
-#       var: snap_out
