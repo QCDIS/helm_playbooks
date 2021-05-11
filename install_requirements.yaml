@@ -8,6 +8,12 @@
         - jq
       state: present
      become: yes 
+     
+   - package:
+      name:
+        - ansible
+      state: absent
+     become: yes 
     
 
    - pip:
@@ -17,9 +23,6 @@
    - pip:
       name: ansible
       state: absent
-      
-   - shell: apt purge ansible*
-     become: yes
       
    - pip:
       name: ansible
