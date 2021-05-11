@@ -3,42 +3,45 @@
    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
-   - package:
+    - shell: apt purge -y ansible*
+      become: yes 
+
+    - package:
       name:
         - jq
       state: present
-     become: yes 
+      become: yes 
      
-   - package:
+    - package:
       name:
         - ansible
       state: absent
-     become: yes 
-    
+      become: yes 
 
-   - pip:
+
+    - pip:
       name: pip
       state: latest
 
-   - pip:
+    - pip:
       name: ansible
       state: absent
-      
-   - pip:
+
+    - pip:
       name: ansible
       version: '2.9'
       state: forcereinstall
-        
-   - shell: ansible --version
-     register: ansible_v_output
-    
-   - debug:
+
+    - shell: ansible --version
+      register: ansible_v_output
+
+    - debug:
       var: ansible_v_output
-         
-   - shell: ansible-galaxy collection install community.general
-     register: ansible_galaxy_output
-      
-   - debug:
+
+    - shell: ansible-galaxy collection install community.general
+      register: ansible_galaxy_output
+
+    - debug:
       var: ansible_galaxy_output
         
            
