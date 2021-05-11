@@ -17,6 +17,15 @@
    - pip:
       name:
         - ansible
+      state: absent
+      
+   - pip:
+      name:
+        - ansible
+      state: forcereinstall
+        
+   - shell: ansible --version
+     register: ansible_v_output
     
    - debug:
       var: ansible_v_output
