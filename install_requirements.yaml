@@ -20,9 +20,9 @@
         update_cache: yes
         
     - apt_repository: 
-      repo: ppa:ansible/ansible
-      state: present
-      update_cache: yes
+        repo: ppa:ansible/ansible
+        state: present
+        update_cache: yes
       
     - apt: 
         name:
