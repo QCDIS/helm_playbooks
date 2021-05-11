@@ -14,12 +14,22 @@
         name: pip
         state: latest
 
-    - shell: python3 -m pip install --user ansible && python3 -m pip install --user paramiko
-      register: ansibleinstall_output
+    - apt: 
+        name:
+          - software-properties-common
+        update_cache: yes
+        
+    - apt_repository: 
+      repo: ppa:ansible/ansible
+      state: present
+      update_cache: yes
       
-    - debug:
-        var: ansibleinstall_output
+    - apt: 
+        name:
+          - ansible
+        update_cache: yes
       
+           
     - shell: ansible --version
       register: ansible_v_output
 
