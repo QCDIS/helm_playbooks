@@ -16,8 +16,8 @@
 
    - pip:
       name:
-         - ansible
-         state: forcereinstall
+        - ansible
+        state: forcereinstall
     
    - debug:
       var: ansible_v_output
