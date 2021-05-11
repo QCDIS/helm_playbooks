@@ -5,11 +5,11 @@
   tasks:
   
     
-  - apt:
-      pkg:
-      - jq
-      update_cache: yes
-    become: yes    
+    - package:
+        name:
+        - jq
+        state: present
+     become: yes 
     
 
   - pip:
