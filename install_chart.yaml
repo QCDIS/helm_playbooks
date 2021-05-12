@@ -1,15 +1,19 @@
 - hosts: master
   vars:
       ansible_python_interpreter: /usr/bin/python3
-  collections:
-    - community.kubernetes
 
   tasks:    
-    - community.kubernetes.helm:
-        name: test
-        chart_ref: stable/prometheus
-        release_namespace: monitoring
-        create_namespace: true
+  
+    - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
+    
+    - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
+    
+   - copy:
+      src: /tmp/helm_values.yaml
+      dest: /tmp/helm_values.yaml
+     
+        
+    - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
     
 #     - community.kubernetes.helm:
 #         host: localhost
