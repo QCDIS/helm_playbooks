@@ -1,6 +1,8 @@
 - hosts: master
   vars:
    ansible_python_interpreter: /usr/bin/python3
+  collections:
+    - community.general
 
   tasks:
   
@@ -43,7 +45,7 @@
     
     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general.snap
     
-    - community.general.snap:
+    - snap:
         name:
           - helm
         classic: yes
