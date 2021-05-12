@@ -3,10 +3,8 @@
       ansible_python_interpreter: /usr/bin/python3
 
   tasks:
-
-#     - community.kubernetes.helm:
       - helm:
-          name: "{{name}}"
+          name: "{{helm_name}}"
           chart_ref: "{{ref}}"
           repo_url: "{{location}}"
       
