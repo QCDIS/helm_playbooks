@@ -3,8 +3,15 @@
       ansible_python_interpreter: /usr/bin/python3
 
   tasks:
-      - helm:
-          name: "{{helm_name}}"
-          chart_ref: "{{ref}}"
-          repo_url: "{{location}}"
+  
+    - helm:
+        host: localhost
+        chart:
+          name: "{{chart_name}}"
+          source:
+            type: "{{repo_type}}"
+            location: "{{repo_url}}"
+        state: present
+        name: "{{name}}"
+        namespace: "{{namespace}}"
       
