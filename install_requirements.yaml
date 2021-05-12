@@ -13,6 +13,14 @@
     - pip:
         name: pip
         state: latest
+        
+
+    - pip:
+        name: 
+          - pyhelm
+        state: present
+        
+        
 
     - apt: 
         name:
