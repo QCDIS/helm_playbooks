@@ -49,6 +49,7 @@
         name:
           - helm
         classic: yes
+      become: yes
       
      
       
