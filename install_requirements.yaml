@@ -14,14 +14,12 @@
     - pip:
         name: pip
         state: latest
-        
-
+       
     - pip:
         name: 
           - pyhelm
+          - PyYAML
         state: present
-        
-        
 
     - apt: 
         name:
@@ -42,13 +40,12 @@
         update_cache: yes
       become: yes 
       
-      
     - apt: 
         name:
           - ansible
+          - helm
         update_cache: yes
       become: yes 
-
 
     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.kubernetes
       register: ansible_galaxy_output
