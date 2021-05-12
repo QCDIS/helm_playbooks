@@ -3,15 +3,28 @@
       ansible_python_interpreter: /usr/bin/python3
 
   tasks:
-  
+    
     - helm:
-        host: localhost
-        chart:
-          name: "{{chart_name}}"
-          source:
-            type: "{{repo_type}}"
-            location: "{{repo_url}}"
-        state: present
-        name: "{{name}}"
-        namespace: "{{namespace}}"
+      host: localhost
+      chart:
+        name: memcached
+        version: 0.4.0
+        source:
+          type: repo
+          location: https://kubernetes-charts.storage.googleapis.com
+      state: present
+      name: my-memcached
+      namespace: default
+    
+    
+#     - helm:
+#         host: localhost
+#         chart:
+#           name: "{{chart_name}}"
+#           source:
+#             type: "{{repo_type}}"
+#             location: "{{repo_url}}"
+#         state: present
+#         name: "{{name}}"
+#         namespace: "{{namespace}}"
       
