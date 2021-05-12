@@ -8,9 +8,9 @@
     
     - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
     
-   - copy:
-      src: /tmp/helm_values.yaml
-      dest: /tmp/helm_values.yaml
+    - copy:
+        src: /tmp/helm_values.yaml
+        dest: /tmp/helm_values.yaml
      
         
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
