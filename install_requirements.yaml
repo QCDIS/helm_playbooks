@@ -42,6 +42,6 @@
       become: yes 
 
 
-    - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general
+    - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.kubernetes
       register: ansible_galaxy_output
       
