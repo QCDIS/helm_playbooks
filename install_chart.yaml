@@ -5,7 +5,7 @@
     - community.kubernetes
 
   tasks:    
-    - helm:
+    - community.kubernetes.helm:
         name: test
         chart_ref: stable/prometheus
         release_namespace: monitoring
