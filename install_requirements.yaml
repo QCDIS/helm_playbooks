@@ -7,6 +7,7 @@
     - package:
         name:
           - jq
+          - git
         state: present
       become: yes 
 
