@@ -3,14 +3,20 @@
       ansible_python_interpreter: /usr/bin/python3
 
   tasks:    
-    - helm:
-        host: localhost
-        chart:
-          name: "{{chart_name}}"
-          source:
-            type: "{{repo_type}}"
-            location: "{{repo_url}}"
-        state: present
-        name: "{{name}}"
-        namespace: "{{namespace}}"
+    - community.kubernetes.helm:
+        name: test
+        chart_ref: stable/prometheus
+        release_namespace: monitoring
+        create_namespace: true
+    
+#     - community.kubernetes.helm:
+#         host: localhost
+#         chart:
+#           name: "{{chart_name}}"
+#           source:
+#             type: "{{repo_type}}"
+#             location: "{{repo_url}}"
+#         state: present
+#         name: "{{name}}"
+#         namespace: "{{namespace}}"
       
