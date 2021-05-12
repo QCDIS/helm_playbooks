@@ -43,7 +43,7 @@
     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.kubernetes
       register: ansible_galaxy_output
     
-    - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general.snap
+#     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general.snap
     
     - snap:
         name:
