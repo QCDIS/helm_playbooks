@@ -12,7 +12,10 @@
         src: /tmp/helm_values.yaml
         dest: /tmp/helm_values.yaml
      
-        
+    - shell: helm uninstall "{{name}}"
+      ignore_errors: yes
+    
+    
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
     
 #     - community.kubernetes.helm:
