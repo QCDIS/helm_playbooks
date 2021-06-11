@@ -12,3 +12,9 @@
     - pip:
         name: pip
         state: latest
+
+    - snap:
+        name:
+          - helm
+        classic: yes
+      become: yes
