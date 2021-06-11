@@ -10,7 +10,7 @@
       become: yes
       with_items:
       - "jq"
-      - "pip"
+      - "python3-pip"
 
     - pip:
         name: pip
