@@ -5,14 +5,15 @@
     - community.general
 
   tasks:
-  
-    - package:
-        name:
-        - jq
-        - gcc
-        - python3-devel
-        state: present
-#      become: yes
+      - apt:
+          name: jq
+          state: present
+    
+#     - package:
+#         name:
+#         - jq
+#         state: present
+# #      become: yes
        
     
     - snap:
