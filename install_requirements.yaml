@@ -3,24 +3,13 @@
    ansible_python_interpreter: /usr/bin/python3
   collections:
     - community.general
-
   tasks:
-    - apt:
-        name: jq
-        state: present
-    
-#     - package:
-#         name:
-#         - jq
-#         state: present
-# #      become: yes
-       
-    
-    - snap:
+    - package:
         name:
-          - helm
-        classic: yes
-      become: yes
-      
-     
-      
+        - jq
+        state: present
+#      become: yes
+
+    - pip:
+        name: pip
+        state: latest
