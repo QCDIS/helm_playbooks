@@ -9,41 +9,11 @@
     - package:
         name:
         - jq
+        - gcc
+        - python3-devel
         state: present
 #      become: yes
-
-    - pip:
-        name: pip
-        state: latest
        
-#     - pip:
-#         name: 
-#           - pyhelm
-#         state: present
-
-#     - apt: 
-#         name:
-#           - software-properties-common
-#         update_cache: yes
-#       become: yes 
-        
-#     - apt_repository: 
-#         repo: ppa:ansible/ansible
-#         state: present
-#         update_cache: yes
-#       become: yes 
-      
-      
-#     - apt: 
-#         name:
-#           - ansible
-#         update_cache: yes
-#       become: yes 
-
-#     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.kubernetes
-#       register: ansible_galaxy_output
-    
-#     - shell: ansible-galaxy collection install -p $HOME/.ansible/roles community.general.snap
     
     - snap:
         name:
