@@ -4,11 +4,9 @@
   collections:
     - community.general
   tasks:
-    - package:
-        name:
-        - jq
-        state: present
-#      become: yes
+    - apt:
+      name: jq
+      update_cache: yes
 
     - pip:
         name: pip
