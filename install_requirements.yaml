@@ -8,9 +8,9 @@
   
     - package:
         name:
-          - jq
+        - jq
         state: present
-      become: yes 
+#      become: yes
 
     - pip:
         name: pip
