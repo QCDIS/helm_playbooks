@@ -5,8 +5,8 @@
     - community.general
   tasks:
     - apt:
-      name: jq
-      update_cache: yes
+        name: jq
+        update_cache: yes
 
     - pip:
         name: pip
