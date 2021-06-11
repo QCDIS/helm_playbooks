@@ -5,9 +5,9 @@
     - community.general
 
   tasks:
-      - apt:
-          name: jq
-          state: present
+    - apt:
+        name: jq
+        state: present
     
 #     - package:
 #         name:
