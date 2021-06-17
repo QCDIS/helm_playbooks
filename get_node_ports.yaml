@@ -1,0 +1,18 @@
+- name: Get a list of services
+  k8s_info:
+    kind: Service
+    name: "{{service_name}}"
+    namespace: "{{ k8s_namespace }}"
+  register: k8s_services
+  
+- name: "query node ports cluster names"
+  debug:
+    var: item
+  loop: "{{ k8s_services |  json_query('resources[?spec.type==`NodePort`].spec.ports[*].nodePort') }}"
+  register: node_ports
+
+- copy:
+    content: "{{ node_ports }}"
+    dest: /tmp/node_ports/{{ k8s_namespace }}.json
+    
+- shell: "tr -d '\n' < /tmp/node_ports/{{ k8s_namespace }}.json > /tmp/node_ports/{{ k8s_namespace }}_clean.json && mv /tmp/node_ports/{{ k8s_namespace }}_clean.json /tmp/node_ports/{{ k8s_namespace }}.json"
