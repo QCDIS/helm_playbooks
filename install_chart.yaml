@@ -17,7 +17,10 @@
     
     
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
-    
+      register: helm_install_output
+
+    - debug:
+        var: helm_install_output
 #     - community.kubernetes.helm:
 #         host: localhost
 #         chart:
