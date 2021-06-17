@@ -28,6 +28,7 @@
     - include:  get_node_ports.yaml
       vars: 
         k8s_namespace: "{{ item }}"
+        service_name: "{{helm_name}}"
       with_items: "{{namespaces.stdout_lines}}"
         
 
@@ -98,8 +99,5 @@
     - set_stats:
         data: 
           kubernetes:
-            config: "{{kube_config}}"
             service_urls: "{{ node_ports.stdout_lines }}" 
-            tokens: 
-              - "{{ credential }}" 
       
