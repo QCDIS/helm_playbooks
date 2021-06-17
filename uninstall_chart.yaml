@@ -1,0 +1,11 @@
+- hosts: master
+  vars:
+      ansible_python_interpreter: /usr/bin/python3
+
+  tasks:    
+    
+    - shell: helm uninstall "{{name}}"
+      register: helm_install_output
+
+    - debug:
+        var: helm_install_output
