@@ -22,11 +22,12 @@
     - pause:
         seconds: 2
       
-    - shell: kubectl get pod/"{{name}}" -o json
+    - shell: kubectl get pod -o json
       register: kubectl_get_pods
+      when: status is defined
 
     - debug:
-        var: kubectl_get_pods
+        var: kubectl_get_pods.stdout|from_json|json_query('items[*].status.phase')
       when: status is defined
     
       
