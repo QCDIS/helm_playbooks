@@ -18,17 +18,14 @@
     
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
       register: helm_install_output
+      
+      
+    - shell: kubectl get pods -o json
+      register: kubectl_get_pods
+      until: kubectl_get_pods.stdout|from_json|json_query('items[*].status.phase')|unique == ["Running"]
+  
+  
 
     - debug:
-        var: helm_install_output
-#     - community.kubernetes.helm:
-#         host: localhost
-#         chart:
-#           name: "{{chart_name}}"
-#           source:
-#             type: "{{repo_type}}"
-#             location: "{{repo_url}}"
-#         state: present
-#         name: "{{name}}"
-#         namespace: "{{namespace}}"
+        var: kubectl_get_pods
       
