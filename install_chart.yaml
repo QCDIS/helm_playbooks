@@ -27,7 +27,7 @@
       when: status is defined
 
     - debug:
-        var: kubectl_get_pods.stdout|from_json|json_query('.status.phase')
+        var: kubectl_get_pods.stdout|from_json|json_query('items[*]')
       when: status is defined
     
       
