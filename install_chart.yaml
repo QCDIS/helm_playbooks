@@ -18,14 +18,6 @@
     
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
       register: helm_install_output
-      
-    - shell: kubectl get pod/"{{name}}" -o json
-      register: kubectl_get_pods
-      when: status is defined
-
-    - debug:
-        var: kubectl_get_pods.stdout|from_json|json_query('status.phase')
-      when: status is defined
     
       
     - shell: kubectl get pod/"{{name}}" -o json
