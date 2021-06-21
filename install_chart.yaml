@@ -4,24 +4,24 @@
 
   tasks:    
   
-    - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
+#     - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
     
-    - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
+#     - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
     
-    - copy:
-        src: /tmp/helm_values.yaml
-        dest: /tmp/helm_values.yaml
+#     - copy:
+#         src: /tmp/helm_values.yaml
+#         dest: /tmp/helm_values.yaml
      
-    - shell: helm uninstall "{{helm_name}}"
-      ignore_errors: yes
+#     - shell: helm uninstall "{{helm_name}}"
+#       ignore_errors: yes
     
     
-    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
-      register: helm_install_output
+#     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
+#       register: helm_install_output
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
-      until: kubectl_get_pods.stdout|from_json|json_query('status.phase')|unique == ["{{status}}"]
+      until: kubectl_get_pods.stdout|from_json|json_query('status.phase')| == ["{{status}}"]
       retries: 150
       delay: 10
       when: status is defined
