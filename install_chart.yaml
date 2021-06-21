@@ -12,15 +12,18 @@
         src: /tmp/helm_values.yaml
         dest: /tmp/helm_values.yaml
      
-    - shell: helm uninstall "{{name}}"
+    - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
     
     
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
       register: helm_install_output
+      
+    - pause:
+        seconds: 2
     
       
-    - shell: kubectl get pod/"{{name}}" -o json
+    - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
       until: kubectl_get_pods.stdout|from_json|json_query('status.phase')|unique == ["{{status}}"]
       when: status is defined
