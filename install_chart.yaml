@@ -29,4 +29,5 @@
 
     - debug:
         var: kubectl_get_pods
+      when: status is defined
       
