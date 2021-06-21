@@ -16,7 +16,7 @@
       ignore_errors: yes
     
     
-    - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
+    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
       register: helm_install_output
       
     - pause:
