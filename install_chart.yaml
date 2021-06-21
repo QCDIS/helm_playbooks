@@ -4,25 +4,20 @@
 
   tasks:    
   
-#     - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
+    - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
     
-#     - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
+    - local_action: copy content="{{ values }}" dest=/tmp/helm_values.yaml
     
-#     - copy:
-#         src: /tmp/helm_values.yaml
-#         dest: /tmp/helm_values.yaml
+    - copy:
+        src: /tmp/helm_values.yaml
+        dest: /tmp/helm_values.yaml
      
-#     - shell: helm uninstall "{{helm_name}}"
-#       ignore_errors: yes
+    - shell: helm uninstall "{{helm_name}}"
+      ignore_errors: yes
     
     
-#     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
-#       register: helm_install_output
-    - debug:
-        var: kubectl_get_pods.stdout|from_json
-        
-    - debug:
-        var: status
+    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
+      register: helm_install_output
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
