@@ -19,6 +19,9 @@
     - shell: helm install "{{name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
       register: helm_install_output
       
+    - pause:
+        seconds: 2
+      
       
     - shell: kubectl get pod/"{{name}}" -o json
       register: kubectl_get_pods
