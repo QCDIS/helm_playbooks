@@ -18,6 +18,11 @@
     
 #     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/helm_values.yaml
 #       register: helm_install_output
+    - debug:
+        var: kubectl_get_pods.stdout|from_json
+        
+    - debug:
+        var: status
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
