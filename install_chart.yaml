@@ -9,11 +9,11 @@
     - set_fact:
         random_name: "helm_values_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
     
-    - local_action: copy content="{{ values }}" dest=/tmp/"{{random_name}}"_"{{helm_name}}".yaml
+    - local_action: copy content="{{ values }}" dest=/tmp/{{random_name}}_{{helm_name}}.yaml
     
     - copy:
-        src: /tmp/"{{random_name}}"_"{{helm_name}}".yaml
-        dest: /tmp/"{{random_name}}"_"{{helm_name}}".yaml
+        src: /tmp/{{random_name}}_{{helm_name}}".yaml
+        dest: /tmp/{{random_name}}_{{helm_name}}.yaml
      
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
