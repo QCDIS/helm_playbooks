@@ -12,14 +12,14 @@
     - local_action: copy content="{{ values }}" dest=/tmp/{{random_name}}_{{helm_name}}.yaml
     
     - copy:
-        src: /tmp/{{random_name}}_{{helm_name}}".yaml
+        src: /tmp/{{random_name}}_{{helm_name}}.yaml
         dest: /tmp/{{random_name}}_{{helm_name}}.yaml
      
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
     
     
-    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/"{{random_name}}"_"{{helm_name}}".yaml
+    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/{{random_name}}_{{helm_name}}.yaml
       register: helm_install_output
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
