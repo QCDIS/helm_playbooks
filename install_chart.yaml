@@ -12,8 +12,8 @@
     - local_action: copy content="{{ values }}" dest={{random_name}}.yaml
     
     - copy:
-        src: {{random_name}}.yaml
-        dest: {{random_name}}.yaml
+        src: "{{random_name}}".yaml
+        dest: "{{random_name}}".yaml
      
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
