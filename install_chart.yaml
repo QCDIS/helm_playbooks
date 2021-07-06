@@ -8,7 +8,7 @@
     
     - set_fact:
         random_name: "helm_values_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
-      when: values is defined
+#       when: values is defined
     
     - local_action: copy content="{{ values }}" dest=/tmp/{{random_name}}_{{helm_name}}.yaml
 #       when: values is defined
@@ -16,7 +16,7 @@
     - copy:
         src: /tmp/{{random_name}}_{{helm_name}}.yaml
         dest: /tmp/{{random_name}}_{{helm_name}}.yaml
-      when: values is defined
+#       when: values is defined
      
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
@@ -24,11 +24,8 @@
     
     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f /tmp/{{random_name}}_{{helm_name}}.yaml
       register: helm_install_output
-      when: values is defined
+#       when: values is defined
       
-    - shell: helm install "{{helm_name}}" "{{chart_name}}"
-      register: helm_install_output
-      when: values is undefined
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
