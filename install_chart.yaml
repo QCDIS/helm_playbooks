@@ -7,19 +7,19 @@
     - shell: helm repo add "{{repo_name}}" "{{repo_url}}"
     
     - set_fact:
-        random_name: "/tmp/{{helm_name}}_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}"
+        random_name: "/tmp/{{helm_name}}_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}.yaml"
     
-    - local_action: copy content="{{ values }}" dest={{random_name}}.yaml
+    - local_action: copy content="{{ values }}" dest={{random_name}}
     
     - copy:
-        src: "{{random_name}}".yaml
-        dest: "{{random_name}}".yaml
+        src: "{{random_name}}"
+        dest: "{{random_name}}"
      
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
     
     
-    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}.yaml
+    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
