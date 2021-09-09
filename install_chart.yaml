@@ -19,7 +19,8 @@
       ignore_errors: yes
     
     
-    - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+#     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+    - shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output
             
     - shell: kubectl get pod/"{{helm_name}}" -o json
