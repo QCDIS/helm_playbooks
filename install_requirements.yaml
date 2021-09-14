@@ -5,12 +5,12 @@
     - community.general
   tasks:
     - apt:
-        name: "{{item}}"
+        name: 
+          - jq
+          - python3-pip
         update_cache: yes
       become: yes
-      with_items:
-      - "jq"
-      - "python3-pip"
+
 
     - pip:
         name: pip
