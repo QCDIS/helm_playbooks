@@ -26,8 +26,8 @@
     - shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
       until: kubectl_get_pods.stdout|from_json|json_query('status.phase==`"{{status}}"`')
-      retries: 150
-      delay: 10
+      retries: 200
+      delay: 5
       when: status is defined
   
       
