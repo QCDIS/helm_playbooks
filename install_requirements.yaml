@@ -1,8 +1,8 @@
 - hosts: master
   gather_facts: no
+  become: yes
   vars:
    ansible_python_interpreter: /usr/bin/python3
-   become: yes
   collections:
     - community.general
   tasks:
@@ -22,7 +22,7 @@
         classic: yes
       register: status
       until: not status.failed
-      retries: 10
+      retries: 20
 
     - debug:
         var: status
