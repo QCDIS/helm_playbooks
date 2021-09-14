@@ -1,15 +1,23 @@
 - hosts: master
   vars:
    ansible_python_interpreter: /usr/bin/python3
+   become: yes
   collections:
     - community.general
   tasks:
-    - apt:
-        name: 
-          - jq
-          - python3-pip
-        update_cache: yes
-      become: yes
+    - package:
+        name:
+        - jq
+        - python3-pip
+        state: present
+        
+        
+#     - apt:
+#         name: 
+#           - jq
+#           - python3-pip
+#         update_cache: yes
+#       become: yes
 
 
     - pip:
@@ -20,7 +28,6 @@
         name:
           - helm
         classic: yes
-      become: yes
       register: status
 #       until: status.json.status == "READY"
 
