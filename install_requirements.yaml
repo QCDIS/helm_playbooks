@@ -29,8 +29,8 @@
           - helm
         classic: yes
       register: status
-#       until: status.json.status == "READY"
-
+      until: not status.failed
+      retries: 10
 
     - debug:
         var: status
