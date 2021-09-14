@@ -21,3 +21,9 @@
           - helm
         classic: yes
       become: yes
+      register: status
+#       until: status.json.status == "READY"
+
+
+    - debug:
+        var: status
