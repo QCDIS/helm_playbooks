@@ -32,5 +32,18 @@
       retries: 200
       delay: 5
       when: status is defined
+      
+      
+    - include: get_argo_token.yaml
+      when: '{{chart_name}} == "argo/argo-workflows"'
+      register: argo_token
+      
+      
+    - set_fact:
+        credential:
+          token_type: argo_token
+          token: "{{argo_token}}"
+       when: '{{chart_name}} == "argo/argo-workflows"'
+      
   
       
