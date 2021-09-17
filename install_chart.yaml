@@ -35,7 +35,7 @@
       
       
     - include: get_argo_token.yaml
-      when: '{{chart_name}} == "argo/argo-workflows"'
+      when: {{chart_name}} == "argo/argo-workflows"
 #       register: argo_token
 
 
@@ -47,7 +47,7 @@
         credential:
           token_type: argo_token
           token: "{{argo_token}}"
-       when: '{{chart_name}} == "argo/argo-workflows"'
+       when: {{chart_name}} == "argo/argo-workflows"
       
   
       
