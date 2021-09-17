@@ -41,6 +41,7 @@
 
     - debug: 
         var: argo_token.stdout
+      when: chart_name == "argo/argo-workflows"
       
       
     - set_fact:
@@ -48,7 +49,7 @@
           argo_token: 
             token_type: argo_token
             token: "{{argo_token.stdout}}"
-      when: chart_name == "argo/argo-workflows"
+      when: status is defined
       
   
       
