@@ -44,9 +44,10 @@
       
       
     - set_fact:
-        credential:
-          token_type: argo_token
-          token: "{{argo_token.stdout}}"
+        data:
+          argo_token: 
+            token_type: argo_token
+            token: "{{argo_token.stdout}}"
       when: chart_name == "argo/argo-workflows"
       
   
