@@ -36,7 +36,11 @@
       
     - include: get_argo_token.yaml
       when: '{{chart_name}} == "argo/argo-workflows"'
-      register: argo_token
+#       register: argo_token
+
+
+    - debug: 
+        var: argo_token
       
       
     - set_fact:
