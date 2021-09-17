@@ -44,7 +44,7 @@
       when: chart_name == "argo/argo-workflows"
       
       
-    - set_stat:
+    - set_stats:
         data:
           argo_token: 
             token_type: argo_token
