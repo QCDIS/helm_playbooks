@@ -1,17 +1,17 @@
 - hosts: master
+  gather_facts: no
+  become: yes
   vars:
    ansible_python_interpreter: /usr/bin/python3
   collections:
     - community.general
   tasks:
-    - apt:
-        name: "{{item}}"
-        update_cache: yes
-      become: yes
-      with_items:
-      - "jq"
-      - "python3-pip"
-
+    - package:
+        name:
+        - jq
+        - python3-pip
+        state: present
+        
     - pip:
         name: pip
         state: latest
@@ -20,4 +20,9 @@
         name:
           - helm
         classic: yes
-      become: yes
+      register: status
+      until: not status.failed
+      retries: 20
+
+    - debug:
+        var: status
