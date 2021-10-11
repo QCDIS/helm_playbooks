@@ -21,10 +21,8 @@
 
     - shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
-    
-    - name: install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-#     - shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-      shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+
+    - shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output
       until: helm_install_output.rc == 0
       retries: 10
