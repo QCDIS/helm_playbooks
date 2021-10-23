@@ -6,6 +6,7 @@
   tasks:    
     - name: Add "{{repo_name}}" "{{repo_url}}"
       shell: helm repo add "{{repo_name}}" "{{repo_url}}"
+      ignore_errors: yes
     
     - set_fact:
         random_name: "/tmp/{{helm_name}}_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}.json"
