@@ -10,6 +10,7 @@
         name:
         - jq
         - python3-pip
+        - nfs-common
         state: present
         
     - pip:
