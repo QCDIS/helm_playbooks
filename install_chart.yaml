@@ -5,6 +5,11 @@
 
   tasks:    
     - name: Add "{{repo_name}}" "{{repo_url}}"
+      shell: helm repo remove "{{repo_name}}"
+      ignore_errors: yes
+      
+
+    - name: Add "{{repo_name}}" "{{repo_url}}"
       shell: helm repo add "{{repo_name}}" "{{repo_url}}"
       retries: 5
       delay: 1    
