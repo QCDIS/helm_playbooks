@@ -4,7 +4,7 @@
       ansible_python_interpreter: /usr/bin/python3
 
   tasks:    
-    - name: Add "{{repo_name}}" "{{repo_url}}"
+    - name: Remove "{{repo_name}}"
       shell: helm repo remove "{{repo_name}}"
       ignore_errors: yes
       
