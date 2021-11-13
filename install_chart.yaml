@@ -13,6 +13,11 @@
       shell: helm repo add "{{repo_name}}" "{{repo_url}}"
       retries: 5
       delay: 1    
+      
+    - name: update repos
+      shell: helm repo update
+      retries: 2
+      delay: 1    
 
     - set_fact:
         random_name: "/tmp/{{helm_name}}_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}.json"
