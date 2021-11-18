@@ -6,6 +6,14 @@
   collections:
     - community.general
   tasks:
+  
+    - name: Wait for apt
+      shell: while fuser /var/lib/dpkg/{{ item }} >/dev/null 2>&1; do sleep 3; done;
+      with_items:
+        - lock
+        - lock-frontend
+      become: yes
+  
     - package:
         name:
         - jq
