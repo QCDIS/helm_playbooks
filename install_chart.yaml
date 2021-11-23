@@ -41,8 +41,8 @@
       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output
       until: helm_install_output.rc == 0
-      retries: 5
-      delay: 2
+#       retries: 5
+#       delay: 2
       when: values is defined
       
     - name: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
