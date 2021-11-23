@@ -23,26 +23,30 @@
         random_name: "/tmp/{{helm_name}}_{{ lookup('password', '/dev/null chars=ascii_lowercase,digits length=8') }}.json"
       when: values is defined
     
+    
     - local_action: copy content="{{ values }}" dest={{random_name}}
       when: values is defined
     
-    - copy:
+    - name: Copy "{{ values }}" to "{{random_name}}"
+      copy:
         src: "{{random_name}}"
         dest: "{{random_name}}"
       when: values is defined
 
-    - shell: helm uninstall "{{helm_name}}"
+    - name: helm uninstall "{{helm_name}}"
+      shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
 
-    - shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+    - name: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+      shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output
       until: helm_install_output.rc == 0
       retries: 5
       delay: 2
       when: values is defined
       
-      
-    - shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
+    - name: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
+      shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
       register: helm_install_output
       until: helm_install_output.rc == 0
       retries: 5
@@ -50,7 +54,8 @@
       when: values is not defined
       
             
-    - shell: kubectl get pod/"{{helm_name}}" -o json
+    - name: kubectl get pod/"{{helm_name}}" -o json
+      shell: kubectl get pod/"{{helm_name}}" -o json
       register: kubectl_get_pods
       until: kubectl_get_pods.stdout|from_json|json_query('status.phase==`"{{status}}"`')
       retries: 200
