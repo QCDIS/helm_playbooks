@@ -49,22 +49,14 @@
       register: helm_install_output_try1
       when: values is not defined
       
-    - name: helm uninstall "{{helm_name}}"
+     - debug:
+        var: helm_install_output_try1
+      
+    - name: Error with installation. Running helm uninstall "{{helm_name}}"
       shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
       when: helm_install_output_try1.rc != 0
       
-    - name: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-#       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-      shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-      register: helm_install_output_try2
-      when: values is defined
-      
-    - name: helm install "{{helm_name}}" "{{chart_name}}" 
-#       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
-      shell: helm install "{{helm_name}}" "{{chart_name}}" 
-      register: helm_install_output_try2
-      when: values is not defined
       
             
     - name: kubectl get pod/"{{helm_name}}" -o json
