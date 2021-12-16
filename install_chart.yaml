@@ -49,7 +49,7 @@
       register: helm_install_output_try1
       when: values is not defined
       
-     - debug:
+    - debug:
         var: helm_install_output_try1
       
     - name: Error with installation. Running helm uninstall "{{helm_name}}"
