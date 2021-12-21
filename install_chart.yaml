@@ -39,7 +39,7 @@
 
     - name: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
 #       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-      shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+      shell: helm install "{{helm_name}}" "{{chart_name}}"_ERROR  -f {{random_name}}
       register: helm_install_output_try1
       when: values is defined
       
