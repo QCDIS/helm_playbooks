@@ -42,6 +42,7 @@
       shell: helm install "{{helm_name}}" "{{chart_name}}"_ERROR  -f {{random_name}}
       register: helm_install_output_try1
       when: values is defined
+      ignore_errors: yes
       
     - debug:
         var: helm_install_output_try1
@@ -55,6 +56,10 @@
 #       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       when: helm_install_output_try1['failed']
+      register: helm_install_output_try2
+      retries: 3
+      delay: 1
+      until: not helm_install_output_try2['failed']
       
       
     - name: helm install "{{helm_name}}" "{{chart_name}}" 
