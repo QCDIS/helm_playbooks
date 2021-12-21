@@ -48,12 +48,22 @@
       ignore_errors: yes
       when: helm_install_output_try1.rc != 0
       
+    - name: Error with installation. Running kubectl delete mutatingwebhookconfiguration/monitoring-kube-prometheus-admission
+      shell: kubectl delete mutatingwebhookconfiguration/monitoring-kube-prometheus-admission
+      ignore_errors: yes
+      when: helm_install_output_try1.rc != 0
+      
+    - name: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+#       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+      shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
+      when: helm_install_output_try1.rc != 0
+      
+      
     - name: helm install "{{helm_name}}" "{{chart_name}}" 
 #       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}" 
       shell: helm install "{{helm_name}}" "{{chart_name}}" 
       register: helm_install_output_try1
-      when: values is not defined
-      
+      when: values is not defined     
      
       
             
