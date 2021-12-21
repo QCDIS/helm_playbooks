@@ -42,6 +42,9 @@
       shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       register: helm_install_output_try1
       when: values is defined
+      
+    - debug:
+        var: helm_install_output_try1
             
     - name: Error with installation. Running helm uninstall "{{helm_name}}"
       shell: helm uninstall "{{helm_name}}"
