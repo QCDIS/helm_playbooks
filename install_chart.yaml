@@ -50,12 +50,12 @@
     - name: Error with installation. Running helm uninstall "{{helm_name}}"
       shell: helm uninstall "{{helm_name}}"
       ignore_errors: yes
-      when: "'failed' in helm_install_output_try1['failed']"
+      when: "'failed' in helm_install_output_try1 and helm_install_output_try1['failed']"
       
     - name: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
 #       shell: helm upgrade --install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
       shell: helm install "{{helm_name}}" "{{chart_name}}"  -f {{random_name}}
-      when: "'failed' in helm_install_output_try1['failed']"
+      when: "'failed' in helm_install_output_try1 and helm_install_output_try1['failed']"
       register: helm_install_output_try2
       retries: 3
       delay: 1
